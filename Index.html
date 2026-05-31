@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SamyGhost Pairing</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background-image:url('background.jpg');
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.70);
+z-index:0;
+}
+
+.card{
+position:relative;
+z-index:2;
+
+width:95%;
+max-width:450px;
+
+padding:25px;
+
+background:rgba(15,15,15,.75);
+backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,.1);
+border-radius:25px;
+
+box-shadow:0 0 25px rgba(37,211,102,.2);
+}
+
+.logo{
+font-size:55px;
+text-align:center;
+margin-bottom:10px;
+}
+
+h1{
+text-align:center;
+color:#25D366;
+margin-bottom:10px;
+}
+
+.status{
+background:#112218;
+color:#25D366;
+padding:10px;
+border-radius:10px;
+text-align:center;
+margin-bottom:15px;
+}
+
+.visitors{
+background:#111B21;
+padding:10px;
+border-radius:10px;
+text-align:center;
+margin-bottom:15px;
+}
+
+input{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+border-radius:12px;
+font-size:17px;
+margin-bottom:15px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#25D366;
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.codeBox{
+margin-top:20px;
+background:#111B21;
+padding:20px;
+border-radius:15px;
+font-size:28px;
+font-weight:bold;
+letter-spacing:5px;
+text-align:center;
+}
+
+.copy{
+text-align:center;
+margin-top:15px;
+cursor:pointer;
+color:#25D366;
+}
+
+.history{
+margin-top:20px;
+background:#111B21;
+padding:15px;
+border-radius:15px;
+}
+
+.history h3{
+margin-bottom:10px;
+color:#25D366;
+}
+
+.history p{
+margin-bottom:5px;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+font-size:13px;
+color:#aaa;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="card">
+
+<div class="logo">👻</div>
+
+<h1>SAMY GHOST</h1>
+
+<div class="status">
+🟢 WhatsApp API Ready
+</div>
+
+<div class="visitors">
+👥 Visiteurs : 1247
+</div>
+
+<input
+type="text"
+id="phone"
+placeholder="237XXXXXXXXX">
+
+<button id="btn" onclick="generateCode()">
+⚡ GÉNÉRER LE CODE
+</button>
+
+<div class="codeBox" id="code">
+---- ----
+</div>
+
+<div class="copy" onclick="copyCode()">
+📋 Copier le code
+</div>
+
+<div class="history">
+<h3>🕒 Historique récent</h3>
+
+<div id="history">
+<p>ABCD-EFGH</p>
+<p>JKLM-1234</p>
+<p>WXYZ-5678</p>
+</div>
+
+</div>
+
+<div class="footer">
+👻 SAMY GHOST PAIRING SYSTEM
+</div>
+
+</div>
+
+<script>
+
+function generateCode(){
+
+const btn=document.getElementById("btn");
+
+btn.innerHTML="⏳ Génération...";
+btn.disabled=true;
+
+setTimeout(()=>{
+
+const chars="ABCDEFGHJKLMNPQRSTUVWXYZ123456789";
+
+let code="";
+
+for(let i=0;i<8;i++){
+
+code+=chars[Math.floor(Math.random()*chars.length)];
+
+if(i===3) code+="-";
+
+}
+
+document.getElementById("code").innerHTML=code;
+
+document.getElementById("history").innerHTML=
+"<p>"+code+"</p>" +
+document.getElementById("history").innerHTML;
+
+btn.innerHTML="⚡ GÉNÉRER LE CODE";
+btn.disabled=false;
+
+},2000);
+
+}
+
+function copyCode(){
+
+const code=document.getElementById("code").innerText;
+
+navigator.clipboard.writeText(code);
+
+alert("Code copié !");
+
+}
+
+</script>
+
+</body>
+</html>
