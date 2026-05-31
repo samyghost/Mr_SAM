@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>WhatsApp Pairing Pro</title>
+<title>SamyGhost Pairing</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -15,53 +16,74 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#0B141A;
+background-image:url('background.jpg');
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+background-attachment:fixed;
+
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 color:white;
-overflow:hidden;
 }
 
-.bg{
-position:absolute;
+.overlay{
+position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
-background:
-radial-gradient(circle at top,#25D36622,transparent 40%),
-radial-gradient(circle at bottom,#128C7E22,transparent 40%);
+background:rgba(0,0,0,.70);
+z-index:0;
 }
 
 .card{
 position:relative;
-width:380px;
-padding:30px;
-background:#202C33;
-border-radius:25px;
-box-shadow:0 0 30px rgba(37,211,102,.25);
-text-align:center;
 z-index:2;
+
+width:95%;
+max-width:450px;
+
+padding:25px;
+
+background:rgba(15,15,15,.75);
+backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,.1);
+border-radius:25px;
+
+box-shadow:0 0 25px rgba(37,211,102,.2);
 }
 
 .logo{
-font-size:60px;
+font-size:55px;
+text-align:center;
 margin-bottom:10px;
 }
 
 h1{
+text-align:center;
 color:#25D366;
 margin-bottom:10px;
 }
 
 .status{
-display:inline-block;
-padding:8px 15px;
 background:#112218;
-border-radius:50px;
-margin-bottom:20px;
 color:#25D366;
-font-size:14px;
+padding:10px;
+border-radius:10px;
+text-align:center;
+margin-bottom:15px;
+}
+
+.visitors{
+background:#111B21;
+padding:10px;
+border-radius:10px;
+text-align:center;
+margin-bottom:15px;
 }
 
 input{
@@ -71,7 +93,7 @@ border:none;
 outline:none;
 border-radius:12px;
 font-size:17px;
-margin-top:15px;
+margin-bottom:15px;
 }
 
 button{
@@ -82,61 +104,79 @@ border-radius:12px;
 background:#25D366;
 color:white;
 font-size:18px;
+font-weight:bold;
 cursor:pointer;
-margin-top:15px;
-}
-
-button:hover{
-opacity:.9;
 }
 
 .codeBox{
-margin-top:25px;
+margin-top:20px;
 background:#111B21;
-padding:25px;
+padding:20px;
 border-radius:15px;
 font-size:28px;
-letter-spacing:5px;
 font-weight:bold;
+letter-spacing:5px;
+text-align:center;
 }
 
 .copy{
+text-align:center;
 margin-top:15px;
-font-size:14px;
-color:#25D366;
 cursor:pointer;
+color:#25D366;
+}
+
+.history{
+margin-top:20px;
+background:#111B21;
+padding:15px;
+border-radius:15px;
+}
+
+.history h3{
+margin-bottom:10px;
+color:#25D366;
+}
+
+.history p{
+margin-bottom:5px;
 }
 
 .footer{
+text-align:center;
 margin-top:20px;
-font-size:12px;
+font-size:13px;
 color:#aaa;
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
+<div class="overlay"></div>
 
 <div class="card">
 
-<div class="logo">📱</div>
+<div class="logo">👻</div>
 
-<h1>WhatsApp Pairing</h1>
+<h1>SAMY GHOST</h1>
 
 <div class="status">
-🟢 Serveur en ligne
+🟢 WhatsApp API Ready
+</div>
+
+<div class="visitors">
+👥 Visiteurs : 1247
 </div>
 
 <input
 type="text"
 id="phone"
-placeholder="237XXXXXXXXX"
-/>
+placeholder="237XXXXXXXXX">
 
-<button onclick="generateCode()">
-Générer le code
+<button id="btn" onclick="generateCode()">
+⚡ GÉNÉRER LE CODE
 </button>
 
 <div class="codeBox" id="code">
@@ -147,8 +187,19 @@ Générer le code
 📋 Copier le code
 </div>
 
+<div class="history">
+<h3>🕒 Historique récent</h3>
+
+<div id="history">
+<p>ABCD-EFGH</p>
+<p>JKLM-1234</p>
+<p>WXYZ-5678</p>
+</div>
+
+</div>
+
 <div class="footer">
-Powered by SamyGhost
+👻 SAMY GHOST PAIRING SYSTEM
 </div>
 
 </div>
@@ -156,6 +207,13 @@ Powered by SamyGhost
 <script>
 
 function generateCode(){
+
+const btn=document.getElementById("btn");
+
+btn.innerHTML="⏳ Génération...";
+btn.disabled=true;
+
+setTimeout(()=>{
 
 const chars="ABCDEFGHJKLMNPQRSTUVWXYZ123456789";
 
@@ -171,6 +229,15 @@ if(i===3) code+="-";
 
 document.getElementById("code").innerHTML=code;
 
+document.getElementById("history").innerHTML=
+"<p>"+code+"</p>" +
+document.getElementById("history").innerHTML;
+
+btn.innerHTML="⚡ GÉNÉRER LE CODE";
+btn.disabled=false;
+
+},2000);
+
 }
 
 function copyCode(){
@@ -180,6 +247,7 @@ const code=document.getElementById("code").innerText;
 navigator.clipboard.writeText(code);
 
 alert("Code copié !");
+
 }
 
 </script>
