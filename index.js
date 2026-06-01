@@ -3,9 +3,11 @@ const express = require("express");
 const app = express();
 
 app.get("/", (req, res) => {
-    res.send("Samy.io WhatsApp Pairing");
+    res.send("Samy.io Online");
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Serveur démarré");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Serveur lancé sur ${PORT}`);
 });
