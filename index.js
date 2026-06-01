@@ -1,15 +1,11 @@
 const express = require("express");
-const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.send("Samy.io WhatsApp Pairing");
 });
 
-app.listen(PORT, () => {
-    console.log(`Serveur lancé sur le port ${PORT}`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log("Serveur démarré");
 });
